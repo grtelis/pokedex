@@ -1,6 +1,6 @@
 package pokedex
 
-class Entrenador {
+class Entrenadores {
 
     int id
     String nombre
@@ -38,4 +38,3 @@ class Entrenador {
         "${nombre + " " + apellido}"
     }
 }
-
