@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'entrenadores.label', default: 'Entrenadores')}" />
+        <g:set var="entityName" value="${message(code: 'entrenador.label', default: 'Entrenador')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
     <div id="content" role="main">
         <div class="container">
             <section class="row">
-                <a href="#list-entrenadores" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+                <a href="#list-entrenador" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
                 <div class="nav" role="navigation">
                     <ul>
                         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -18,16 +18,16 @@
                 </div>
             </section>
             <section class="row">
-                <div id="list-entrenadores" class="col-12 content scaffold-list" role="main">
+                <div id="list-entrenador" class="col-12 content scaffold-list" role="main">
                     <h1><g:message code="default.list.label" args="[entityName]" /></h1>
                     <g:if test="${flash.message}">
                         <div class="message" role="status">${flash.message}</div>
                     </g:if>
-                    <f:table collection="${entrenadoresList}" />
+                    <f:table collection="${entrenadorList}" />
 
-                    <g:if test="${entrenadoresCount > params.int('max')}">
+                    <g:if test="${entrenadorCount > params.int('max')}">
                     <div class="pagination">
-                        <g:paginate total="${entrenadoresCount ?: 0}" />
+                        <g:paginate total="${entrenadorCount ?: 0}" />
                     </div>
                     </g:if>
                 </div>

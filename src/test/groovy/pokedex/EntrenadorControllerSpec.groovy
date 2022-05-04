@@ -5,7 +5,7 @@ import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
 import spock.lang.*
 
-class EntrenadoresControllerSpec extends Specification implements ControllerUnitTest<EntrenadoresController>, DomainUnitTest<Entrenadores> {
+class EntrenadorControllerSpec extends Specification implements ControllerUnitTest<EntrenadorController>, DomainUnitTest<Entrenador> {
 
     def populateValidParams(params) {
         assert params != null
@@ -17,7 +17,7 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
 
     void "Test the index action returns the correct model"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
+        controller.entrenadorService = Mock(EntrenadorService) {
             1 * list(_) >> []
             1 * count() >> 0
         }
@@ -26,8 +26,8 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         controller.index()
 
         then:"The model is correct"
-        !model.entrenadoresList
-        model.entrenadoresCount == 0
+        !model.entrenadorList
+        model.entrenadorCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -35,7 +35,7 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         controller.create()
 
         then:"The model is correctly created"
-        model.entrenadores!= null
+        model.entrenador!= null
     }
 
     void "Test the save action with a null instance"() {
@@ -45,14 +45,14 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         controller.save(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/entrenadores/index'
+        response.redirectedUrl == '/entrenador/index'
         flash.message != null
     }
 
     void "Test the save action correctly persists"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
-            1 * save(_ as Entrenadores)
+        controller.entrenadorService = Mock(EntrenadorService) {
+            1 * save(_ as Entrenador)
         }
 
         when:"The save action is executed with a valid instance"
@@ -60,38 +60,38 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
         populateValidParams(params)
-        def entrenadores = new Entrenadores(params)
-        entrenadores.id = 1
+        def entrenador = new Entrenador(params)
+        entrenador.id = 1
 
-        controller.save(entrenadores)
+        controller.save(entrenador)
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/entrenadores/show/1'
+        response.redirectedUrl == '/entrenador/show/1'
         controller.flash.message != null
     }
 
     void "Test the save action with an invalid instance"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
-            1 * save(_ as Entrenadores) >> { Entrenadores entrenadores ->
-                throw new ValidationException("Invalid instance", entrenadores.errors)
+        controller.entrenadorService = Mock(EntrenadorService) {
+            1 * save(_ as Entrenador) >> { Entrenador entrenador ->
+                throw new ValidationException("Invalid instance", entrenador.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def entrenadores = new Entrenadores()
-        controller.save(entrenadores)
+        def entrenador = new Entrenador()
+        controller.save(entrenador)
 
         then:"The create view is rendered again with the correct model"
-        model.entrenadores != null
+        model.entrenador != null
         view == 'create'
     }
 
     void "Test the show action with a null id"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
+        controller.entrenadorService = Mock(EntrenadorService) {
             1 * get(null) >> null
         }
 
@@ -104,20 +104,20 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
 
     void "Test the show action with a valid id"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
-            1 * get(2) >> new Entrenadores()
+        controller.entrenadorService = Mock(EntrenadorService) {
+            1 * get(2) >> new Entrenador()
         }
 
         when:"A domain instance is passed to the show action"
         controller.show(2)
 
         then:"A model is populated containing the domain instance"
-        model.entrenadores instanceof Entrenadores
+        model.entrenador instanceof Entrenador
     }
 
     void "Test the edit action with a null id"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
+        controller.entrenadorService = Mock(EntrenadorService) {
             1 * get(null) >> null
         }
 
@@ -130,15 +130,15 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
 
     void "Test the edit action with a valid id"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
-            1 * get(2) >> new Entrenadores()
+        controller.entrenadorService = Mock(EntrenadorService) {
+            1 * get(2) >> new Entrenador()
         }
 
         when:"A domain instance is passed to the show action"
         controller.edit(2)
 
         then:"A model is populated containing the domain instance"
-        model.entrenadores instanceof Entrenadores
+        model.entrenador instanceof Entrenador
     }
 
 
@@ -149,14 +149,14 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         controller.update(null)
 
         then:"A 404 error is returned"
-        response.redirectedUrl == '/entrenadores/index'
+        response.redirectedUrl == '/entrenador/index'
         flash.message != null
     }
 
     void "Test the update action correctly persists"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
-            1 * save(_ as Entrenadores)
+        controller.entrenadorService = Mock(EntrenadorService) {
+            1 * save(_ as Entrenador)
         }
 
         when:"The save action is executed with a valid instance"
@@ -164,31 +164,31 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
         populateValidParams(params)
-        def entrenadores = new Entrenadores(params)
-        entrenadores.id = 1
+        def entrenador = new Entrenador(params)
+        entrenador.id = 1
 
-        controller.update(entrenadores)
+        controller.update(entrenador)
 
         then:"A redirect is issued to the show action"
-        response.redirectedUrl == '/entrenadores/show/1'
+        response.redirectedUrl == '/entrenador/show/1'
         controller.flash.message != null
     }
 
     void "Test the update action with an invalid instance"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
-            1 * save(_ as Entrenadores) >> { Entrenadores entrenadores ->
-                throw new ValidationException("Invalid instance", entrenadores.errors)
+        controller.entrenadorService = Mock(EntrenadorService) {
+            1 * save(_ as Entrenador) >> { Entrenador entrenador ->
+                throw new ValidationException("Invalid instance", entrenador.errors)
             }
         }
 
         when:"The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'PUT'
-        controller.update(new Entrenadores())
+        controller.update(new Entrenador())
 
         then:"The edit view is rendered again with the correct model"
-        model.entrenadores != null
+        model.entrenador != null
         view == 'edit'
     }
 
@@ -199,13 +199,13 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         controller.delete(null)
 
         then:"A 404 is returned"
-        response.redirectedUrl == '/entrenadores/index'
+        response.redirectedUrl == '/entrenador/index'
         flash.message != null
     }
 
     void "Test the delete action with an instance"() {
         given:
-        controller.entrenadoresService = Mock(EntrenadoresService) {
+        controller.entrenadorService = Mock(EntrenadorService) {
             1 * delete(2)
         }
 
@@ -215,7 +215,7 @@ class EntrenadoresControllerSpec extends Specification implements ControllerUnit
         controller.delete(2)
 
         then:"The user is redirected to index"
-        response.redirectedUrl == '/entrenadores/index'
+        response.redirectedUrl == '/entrenador/index'
         flash.message != null
     }
 }

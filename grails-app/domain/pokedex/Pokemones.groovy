@@ -2,7 +2,7 @@ package pokedex
 
 class Pokemones {
 
-    Entrenadores entrenadores
+    Entrenador entrenador
     int id
     String nombre
     String numero
@@ -41,6 +41,6 @@ class Pokemones {
         habilidad column: 'habilidad'
         tipo column: 'tipo'
         debilidad column: 'debilidad'
-        entrenadores column: 'idEntrenadores'
+        entrenador column: 'idEntrenador'
     }
 }
