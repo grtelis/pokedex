@@ -3,7 +3,7 @@ package pokedex
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class EntrenadoresSpec extends Specification implements DomainUnitTest<Entrenadores> {
+class EntrenadorSpec extends Specification implements DomainUnitTest<Entrenador> {
 
     def setup() {
     }
