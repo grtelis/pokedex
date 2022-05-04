@@ -7,37 +7,37 @@ import org.hibernate.SessionFactory
 
 @Integration
 @Rollback
-class PokemonesServiceSpec extends Specification {
+class PokemonServiceSpec extends Specification {
 
-    PokemonesService pokemonesService
+    PokemonService pokemonService
     SessionFactory sessionFactory
 
     private Long setupData() {
         // TODO: Populate valid domain instances and return a valid ID
-        //new Pokemones(...).save(flush: true, failOnError: true)
-        //new Pokemones(...).save(flush: true, failOnError: true)
-        //Pokemones pokemones = new Pokemones(...).save(flush: true, failOnError: true)
-        //new Pokemones(...).save(flush: true, failOnError: true)
-        //new Pokemones(...).save(flush: true, failOnError: true)
+        //new Pokemon(...).save(flush: true, failOnError: true)
+        //new Pokemon(...).save(flush: true, failOnError: true)
+        //Pokemon pokemon = new Pokemon(...).save(flush: true, failOnError: true)
+        //new Pokemon(...).save(flush: true, failOnError: true)
+        //new Pokemon(...).save(flush: true, failOnError: true)
         assert false, "TODO: Provide a setupData() implementation for this generated test suite"
-        //pokemones.id
+        //pokemon.id
     }
 
     void "test get"() {
         setupData()
 
         expect:
-        pokemonesService.get(1) != null
+        pokemonService.get(1) != null
     }
 
     void "test list"() {
         setupData()
 
         when:
-        List<Pokemones> pokemonesList = pokemonesService.list(max: 2, offset: 2)
+        List<Pokemon> pokemonList = pokemonService.list(max: 2, offset: 2)
 
         then:
-        pokemonesList.size() == 2
+        pokemonList.size() == 2
         assert false, "TODO: Verify the correct instances are returned"
     }
 
@@ -45,30 +45,30 @@ class PokemonesServiceSpec extends Specification {
         setupData()
 
         expect:
-        pokemonesService.count() == 5
+        pokemonService.count() == 5
     }
 
     void "test delete"() {
-        Long pokemonesId = setupData()
+        Long pokemonId = setupData()
 
         expect:
-        pokemonesService.count() == 5
+        pokemonService.count() == 5
 
         when:
-        pokemonesService.delete(pokemonesId)
+        pokemonService.delete(pokemonId)
         sessionFactory.currentSession.flush()
 
         then:
-        pokemonesService.count() == 4
+        pokemonService.count() == 4
     }
 
     void "test save"() {
         when:
         assert false, "TODO: Provide a valid instance to save"
-        Pokemones pokemones = new Pokemones()
-        pokemonesService.save(pokemones)
+        Pokemon pokemon = new Pokemon()
+        pokemonService.save(pokemon)
 
         then:
-        pokemones.id != null
+        pokemon.id != null
     }
 }

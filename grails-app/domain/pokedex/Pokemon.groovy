@@ -1,6 +1,6 @@
 package pokedex
 
-class Pokemones {
+class Pokemon {
 
     Entrenador entrenador
     int id
