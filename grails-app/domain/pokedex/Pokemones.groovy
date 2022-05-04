@@ -24,8 +24,8 @@ class Pokemones {
         altura(nullable: false, blank: false)
         peso(nullable: false, blank: false)
         habilidad(nullable: false, blank: false)
-        tipo inList: ["Veneno", "Planta", "Fuego", "Agua"]
-        debilidad inList: ["FUego", "Psíquico", "Volador", "Hielo", "Agua", "Tierra", "Roca", "Planta", "Eléctrico"]
+        tipo inList: ["Veneno", "Planta", "Fuego", "Agua", "Eléctrico"]
+        debilidad inList: ["Fuego", "Psíquico", "Volador", "Hielo", "Agua", "Tierra", "Roca", "Planta", "Eléctrico"]
 
     }
 
